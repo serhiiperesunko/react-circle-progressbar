@@ -1,4 +1,13 @@
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
+.container{
+    width: 263px;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.svgContainer {
     height: 158px;
     width: 263px;
     overflow: hidden;
@@ -8,12 +17,12 @@
     position: absolute;
     border-radius: 50%;
     width: 250px;
-    height: 250px;
+    height: 150px;
     background: transparent;
-    transform: rotateZ(0deg);
+    transform: rotateZ(2deg);
     z-index: 1;
-    top: 26px;
-    left: 12px;
+    top: 67px;
+    left: 4px;
     pointer-events: none;
 }
 
@@ -24,4 +33,29 @@
     position: absolute;
     left: -9px;
     top: calc(50% - 8px);
+}
+.info{
+    width: 263px;
+    position: absolute;
+    top:63px;
+    display: inline-flex;
+    flex-flow: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.text{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+    line-height: 15px;
+}
+
+.value{
+    font-weight: 400;
+    font-size: 65px;
+    color: #000000;
+    line-height: 55px;
+    margin-bottom: 20px;
 }
