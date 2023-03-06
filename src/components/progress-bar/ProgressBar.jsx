@@ -1,20 +1,55 @@
 import './progressBar.css'
-import {useEffect, useRef} from "react";
+import {useEffect,  useRef, useState} from "react";
 
-
-
-
+const status = {
+    0: {
+        text: "Very Poor",
+        color: "#FB6061"
+    },
+    50:{
+        text: "Poor",
+        color: "#FC8441"
+    },
+    60:{
+        text: "Unsatisfactory",
+        color: "#FFD140"
+    },
+    70:{
+        text: "Needs Improvement",
+        color: "#0095FC"
+    },
+    80:{
+        text: "Excellent",
+        color: "#3ADA98"
+    },
+}
 
 const ProgressBar = ({value = 0}) => {
     const refCircleContainer = useRef()
+    const [data, setData] = useState(status['0'])
     useEffect(() => {
-        refCircleContainer.current.style.transform = `rotate(${360 + value}deg)`
+        if(value !== 100) {
+            if (value >= 0 && value <= 49) setData(status['0'])
+            if (value >= 50 && value <= 59) setData(status['50'])
+            if (value >= 60 && value <= 69) setData(status['60'])
+            if (value >= 70 && value <= 79) setData(status['70'])
+            if (value >= 80 && value <= 100) setData(status['80'])
+
+            if(value <= 2) refCircleContainer.current.style.transform = `rotate(${4}deg)`
+            if(value > 2 && value <=49) refCircleContainer.current.style.transform = `rotate(${1.65 * value}deg)`
+            if(value > 50 && value <= 59) refCircleContainer.current.style.transform = `rotate(${1.75 * value}deg)`
+            if(value > 60 && value <= 69) refCircleContainer.current.style.transform = `rotate(${1.83 * value}deg)`
+            if(value > 70 && value <= 79) refCircleContainer.current.style.transform = `rotate(${1.85 * value}deg)`
+            if(value > 80 && value <= 89) refCircleContainer.current.style.transform = `rotate(${1.85 * value}deg)`
+            if(value > 90 && value <= 100) refCircleContainer.current.style.transform = `rotate(${1.79 * value}deg)`
+        }
     },[value])
+
     return <>
         <div className="container">
             <div ref={refCircleContainer} className="circleContainer">
                 <svg className="circle" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="9.5" cy="9.5" r="6.5" fill="white" stroke="#3ADA98" stroke-width="6"/>
+                    <circle cx="9.5" cy="9.5" r="6.5" fill="white" stroke={data.color} strokeWidth="6"/>
                 </svg>
 
             </div>
@@ -35,7 +70,8 @@ const ProgressBar = ({value = 0}) => {
                 </svg>
             </div>
         </div>
-            {value}
+            <div>{value}</div>
+            <div>{data.text}</div>
         </>
 }
 

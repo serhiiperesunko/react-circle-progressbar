@@ -5,7 +5,9 @@ function App() {
   const [value, setValue] = useState(0)
   return <>
     <ProgressBar value={value}/>
-    <button onClick={() => setValue(value + 1)}>click</button>
+    <input type="text" onChange={(e) => setValue(e.target.value)}/>
+    <button onClick={() => setValue(value + 1)}>+</button>
+    <button onClick={() => setValue(value - 1)}>-</button>
   </>
 }
 
