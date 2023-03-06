@@ -1,19 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-
 .container{
     width: 263px;
     position: relative;
     font-family: 'Poppins', sans-serif;
 }
 
-.svgContainer {
+.scaleContainer {
     height: 158px;
     width: 263px;
     overflow: hidden;
 }
 
-.circleContainer {
+.indicatorContainer {
     position: absolute;
     border-radius: 50%;
     width: 250px;
@@ -26,9 +25,11 @@
     pointer-events: none;
 }
 
-
-.circle{
-    background: green;
+.indicator{
+    height: 6px;
+    width: 6px;
+    border: 6px solid green;
+    background: #fff;
     border-radius: 50% ;
     position: absolute;
     left: -9px;

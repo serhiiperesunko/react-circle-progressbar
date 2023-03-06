@@ -1,3 +1,7 @@
+/***
+ * @params value: number max = 100
+ * @params speed: indicator's speed
+ */
 import './progressBar.css'
 import {useEffect,  useRef, useState} from "react";
 
@@ -26,51 +30,54 @@ const status = {
 
 const ProgressBar = ({value = 0, speed = 10}) => {
     const refCircleContainer = useRef()
+
     const [data, setData] = useState(status['0'])
     const [step, setStep] = useState(0)
 
     useEffect(() => {
-        if(step <= 49) setData(status['0'])
-        if(step >= 50 && step <= 59) setData(status['50'])
-        if(step >= 60 && step <= 69) setData(status['60'])
-        if(step >= 70 && step <= 79) setData(status['70'])
-        if(step >= 80 && step <= 89) setData(status['80'])
-        // if(step >= 90 && step <= 100) setData(status[''])
-
-        if(step < value ) {
-            const interval = setInterval(() => {
-                setStep((prevState) => prevState+1)
-            }, speed)
-            return () => clearInterval(interval)
-        }
-        if(step > value ) {
-            const interval = setInterval(() => {
-                setStep((prevState) => prevState-1)
-            }, speed)
-            return () => clearInterval(interval)
-        }
-    },[value,step])
-
+        // Reset step
+        setStep(0)
+    },[value])
 
     useEffect(() => {
-        let rotate = (1.8 * step) + 1
+        // If value more than 100, reset to 100
+        const v = value <= 100 ? value : 100
 
-        if(value <= 49) rotate = (1.65 * step) + 1
-        if(value >= 50 && value <= 59) rotate = (1.7 * step) + 1
-        if(value >= 60 && value <= 69) rotate = (1.8 * step) + 1
-        if(value >= 70 && value <= 79) rotate = (1.85 * step) + 1
-        if(value >= 80 && value <= 89) rotate = (1.85 * step) + 1
-        if(value >= 90 && value <= 100) rotate = (1.78 * step) + 1
+        // Set indicator position
+        let rotate = (1.8 * step) + 1
+        if(v <= 49) rotate = (1.50 * step) + 1
+        if(v >= 50 && v <= 59) rotate = (1.63 * step) + 1
+        if(v >= 60 && v <= 65) rotate = (1.76 * step) + 1
+        if(v >= 65 && v <= 69) rotate = (1.73 * step) + 1
+        if(v >= 70 && v <= 71) rotate = (1.85 * step) + 1
+        if(v >= 72 && v <= 79) rotate = (1.785 * step) + 1
+        if(v >= 80 && v <= 81) rotate = (1.88 * step) + 1
+        if(v >= 82 && v <= 89) rotate = (1.87 * step) + 1
+        if(v >= 90 && v <= 95) rotate = (1.80 * step) + 1
+        if(v >= 96 && v <= 100) rotate = (1.75 * step) + 1
         refCircleContainer.current.style.transform = `rotate(${rotate}deg)`
 
+        // Set color, text
+        if(step <= 50) setData(status['0'])
+        if(step > 50 && step <= 60) setData(status['50'])
+        if(step > 60 && step <= 70) setData(status['60'])
+        if(step > 70 && step <= 80) setData(status['70'])
+        if(step > 80 && step <= 90) setData(status['80'])
+        if(step <= v) {
+            const interval = setInterval(() => {
+                setStep((prevState) => prevState + 1)
+            }, speed)
+            return () => clearInterval(interval)
+        }
     },[step])
 
+
     return <div className="container">
-        <div className="svgContainer">
-            <div ref={refCircleContainer} className="circleContainer">
-                <svg className="circle" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="9.5" cy="9.5" r="6.5" fill="white" stroke={data.color} strokeWidth="6"/>
-                </svg>
+        <div className="scaleContainer">
+            <div ref={refCircleContainer} className="indicatorContainer">
+                <div className="indicator" style={{
+                    borderColor: data.color
+                }}></div>
             </div>
             <svg width="263" height="158" viewBox="0 0 263 158" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M244.499 150.32V149.324H246.755V158H245.651V150.32H244.499ZM248.631 153.572C248.631 152.196 248.855 151.124 249.303 150.356C249.751 149.58 250.535 149.192 251.655 149.192C252.767 149.192 253.547 149.58 253.995 150.356C254.443 151.124 254.667 152.196 254.667 153.572C254.667 154.972 254.443 156.06 253.995 156.836C253.547 157.612 252.767 158 251.655 158C250.535 158 249.751 157.612 249.303 156.836C248.855 156.06 248.631 154.972 248.631 153.572ZM253.587 153.572C253.587 152.876 253.539 152.288 253.443 151.808C253.355 151.32 253.167 150.928 252.879 150.632C252.599 150.336 252.191 150.188 251.655 150.188C251.111 150.188 250.695 150.336 250.407 150.632C250.127 150.928 249.939 151.32 249.843 151.808C249.755 152.288 249.711 152.876 249.711 153.572C249.711 154.292 249.755 154.896 249.843 155.384C249.939 155.872 250.127 156.264 250.407 156.56C250.695 156.856 251.111 157.004 251.655 157.004C252.191 157.004 252.599 156.856 252.879 156.56C253.167 156.264 253.355 155.872 253.443 155.384C253.539 154.896 253.587 154.292 253.587 153.572ZM256.166 153.572C256.166 152.196 256.39 151.124 256.838 150.356C257.286 149.58 258.07 149.192 259.19 149.192C260.302 149.192 261.082 149.58 261.53 150.356C261.978 151.124 262.202 152.196 262.202 153.572C262.202 154.972 261.978 156.06 261.53 156.836C261.082 157.612 260.302 158 259.19 158C258.07 158 257.286 157.612 256.838 156.836C256.39 156.06 256.166 154.972 256.166 153.572ZM261.122 153.572C261.122 152.876 261.074 152.288 260.978 151.808C260.89 151.32 260.702 150.928 260.414 150.632C260.134 150.336 259.726 150.188 259.19 150.188C258.646 150.188 258.23 150.336 257.942 150.632C257.662 150.928 257.474 151.32 257.378 151.808C257.29 152.288 257.246 152.876 257.246 153.572C257.246 154.292 257.29 154.896 257.378 155.384C257.474 155.872 257.662 156.264 257.942 156.56C258.23 156.856 258.646 157.004 259.19 157.004C259.726 157.004 260.134 156.856 260.414 156.56C260.702 156.264 260.89 155.872 260.978 155.384C261.074 154.896 261.122 154.292 261.122 153.572Z" fill="black"/>
