@@ -30,10 +30,10 @@ const ProgressBar = ({value = 0}) => {
     useEffect(() => {
         if(value !== 100) {
             if (value >= 0 && value <= 49) setData(status['0'])
-            if (value > 50 && value <= 59) setData(status['50'])
-            if (value > 60 && value <= 69) setData(status['60'])
-            if (value > 70 && value <= 79) setData(status['70'])
-            if (value > 80 && value <= 100) setData(status['80'])
+            if (value >= 50 && value <= 59) setData(status['50'])
+            if (value >= 60 && value <= 69) setData(status['60'])
+            if (value >= 70 && value <= 79) setData(status['70'])
+            if (value >= 80 && value <= 100) setData(status['80'])
 
             if(value <= 2) refCircleContainer.current.style.transform = `rotate(${4}deg)`
             if(value > 2 && value <=50) refCircleContainer.current.style.transform = `rotate(${1.65 * value}deg)`
