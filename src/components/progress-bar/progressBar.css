@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.pb-container{
+    display: inline-block;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+.pb-value{
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: 20px;
+    font-weight: 400;
+    font-size: 66px;
+    line-height: 150%;
+    color: #000000;
+}
+
+.pb-info{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #000000;
+}
+
+#circle{
+
+}
