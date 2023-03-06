@@ -2,7 +2,7 @@ import ProgressBar from "./components/progress-bar/ProgressBar";
 
 function App() {
   return <>
-    <ProgressBar value={50}/>
+    <ProgressBar value={1000}/>
   </>
 }
 

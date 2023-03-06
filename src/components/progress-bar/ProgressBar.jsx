@@ -69,8 +69,7 @@ const ProgressBar = ({value = 0, speed = 10}) => {
             }, speed)
             return () => clearInterval(interval)
         }
-    },[step])
-
+    },[step, value, speed])
 
     return <div className="container">
         <div className="scaleContainer">
