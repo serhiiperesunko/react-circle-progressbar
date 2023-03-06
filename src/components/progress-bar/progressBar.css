@@ -1,34 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.container {
+    height: 263px;
+    width: 263px;
+}
 
-.pb-container{
-    display: inline-block;
+.circleContainer {
+    position: absolute;
+    /*border: 1px solid #000;*/
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    background: transparent;
+    transform: rotateZ(0deg);
+    z-index: 1;
+    top: 26px;
+    left: 12px;
+}
+
+.svgContainer {
     position: relative;
-    font-family: 'Poppins', sans-serif;
 }
-.pb-value{
+
+.circle{
+    /*height: 12px;*/
+    /*width: 12px;*/
+    background: green;
+    border-radius: 50% ;
     position: absolute;
-    left: 0;
-    right: 0;
-    text-align: center;
-    bottom: 20px;
-    font-weight: 400;
-    font-size: 66px;
-    line-height: 150%;
-    color: #000000;
-}
-
-.pb-info{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 5px;
-    text-align: center;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 150%;
-    color: #000000;
-}
-
-#circle{
-
+    left: -9px;
+    top: calc(50% - 8px);
 }
