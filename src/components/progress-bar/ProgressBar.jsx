@@ -1,6 +1,7 @@
 /***
  * @params value: number max = 100
  * @params speed: indicator's speed
+ * @params counterSpeed: speed of count. 0(fast) - 10(slow)
  */
 
 /**
@@ -34,7 +35,7 @@ const status = {
     },
 }
 
-const ProgressBar = ({value = 0, speed = 10}) => {
+const ProgressBar = ({value = 0, speed = 10, counterSpeed = 2.75}) => {
     const refCircleContainer = useRef()
 
     const [data, setData] = useState(status['0'])
@@ -99,7 +100,9 @@ const ProgressBar = ({value = 0, speed = 10}) => {
             </svg>
         </div>
         <div className="info">
-            <div className="value"><CountUp end={value} duration={value / 80}/></div>
+            <div className="value">
+                <CountUp end={value} duration={counterSpeed}/>
+            </div>
             <div className="text">{data.text}</div>
         </div>
         </div>
