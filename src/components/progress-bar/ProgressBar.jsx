@@ -2,8 +2,14 @@
  * @params value: number max = 100
  * @params speed: indicator's speed
  */
+
+/**
+ * @TODO
+ * If component integrated at first time, should to install new lib 'npm i react-countup'
+ * */
 import './progressBar.css'
 import {useEffect,  useRef, useState} from "react";
+import CountUp from 'react-countup';
 
 const status = {
     0: {
@@ -93,7 +99,7 @@ const ProgressBar = ({value = 0, speed = 10}) => {
             </svg>
         </div>
         <div className="info">
-            <div className="value">{value}</div>
+            <div className="value"><CountUp end={value} duration={value / 80}/></div>
             <div className="text">{data.text}</div>
         </div>
         </div>
