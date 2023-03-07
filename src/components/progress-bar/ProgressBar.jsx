@@ -35,7 +35,7 @@ const status = {
     },
 }
 
-const ProgressBar = ({value = 0, speed = 10, counterSpeed = 2.75}) => {
+const ProgressBar = ({value = 0, speed = 1, counterSpeed = 2.75}) => {
     const refCircleContainer = useRef()
 
     const [data, setData] = useState(status['0'])
@@ -72,8 +72,8 @@ const ProgressBar = ({value = 0, speed = 10, counterSpeed = 2.75}) => {
         if(step > 80 && step <= 90) setData(status['80'])
         if(step <= v) {
             const interval = setInterval(() => {
-                setStep((prevState) => prevState + 1)
-            }, speed)
+                setStep((prevState) => prevState + speed)
+            }, 10)
             return () => clearInterval(interval)
         }
     },[step, value, speed])
